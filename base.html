@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Secure Login{% endblock %}</title>
+  <style>
+    *{box-sizing:border-box} body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#eaf1ff,#f7f9fc);color:#172033;min-height:100vh}
+    nav{display:flex;justify-content:space-between;align-items:center;padding:18px 7%;background:#fff;box-shadow:0 3px 18px #1d355710}
+    .brand{font-size:22px;font-weight:800;color:#245de5;text-decoration:none}.navlinks a{margin-left:18px;color:#35415a;text-decoration:none}
+    main{width:min(440px,92%);margin:48px auto}.card{background:#fff;padding:30px;border-radius:18px;box-shadow:0 12px 35px #1b2d5012}
+    h1{margin-top:0;font-size:28px} .muted{color:#68758b;line-height:1.5}
+    label{display:block;margin:16px 0 7px;font-weight:700;font-size:14px}
+    input{width:100%;padding:12px 13px;border:1px solid #d7deea;border-radius:9px;font-size:15px;outline:none}
+    input:focus{border-color:#2b62e8;box-shadow:0 0 0 3px #2b62e81a}
+    button,.button{display:inline-block;border:0;border-radius:10px;background:#2861e8;color:#fff;padding:12px 16px;font-size:15px;font-weight:700;cursor:pointer;text-decoration:none}
+    .full{width:100%;margin-top:22px}.foot{text-align:center;margin-top:20px;color:#68758b}.foot a{color:#245de5;font-weight:700;text-decoration:none}
+    .flash{padding:11px 13px;border-radius:9px;margin:12px 0;background:#edf2ff;color:#294a9b}.flash.danger{background:#fff0f0;color:#a72b2b}.flash.success{background:#eafaf1;color:#147548}.flash.warning{background:#fff7df;color:#8a5a00}
+    .small{font-size:12px;color:#758197;margin-top:14px;line-height:1.5}
+  </style>
+</head>
+<body>
+  <nav><a class="brand" href="{{ url_for('home') }}">Secure<span style="color:#172033">Gate</span></a>
+    <div class="navlinks"><a href="{{ url_for('login') }}">Login</a><a href="{{ url_for('register') }}">Register</a></div>
+  </nav>
+  <main>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

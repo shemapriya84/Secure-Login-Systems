@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Login | SecureGate{% endblock %}
+{% block content %}
+<section class="card">
+  <h1>Welcome back</h1>
+  <p class="muted">Log in to access your secure dashboard.</p>
+  <form method="post">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <label for="identifier">Username or email</label><input id="identifier" name="identifier" required autocomplete="username">
+    <label for="password">Password</label><input id="password" type="password" name="password" required autocomplete="current-password">
+    <button class="full" type="submit">Log in securely</button>
+  </form>
+  <p class="foot">New here? <a href="{{ url_for('register') }}">Create an account</a></p>
+  <p class="small">For your safety, repeated login attempts are rate-limited.</p>
+</section>
+{% endblock %}

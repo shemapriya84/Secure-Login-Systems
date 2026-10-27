@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Dashboard | SecureGate{% endblock %}
+{% block content %}
+<section class="card">
+  <p style="font-size:38px;margin:0 0 12px">🔐</p>
+  <h1>You're logged in, {{ username }}!</h1>
+  <p class="muted">This protected page is visible only to authenticated users.</p>
+  <ul class="muted">
+    <li>Password hashing enabled</li><li>Session-based authentication</li><li>CSRF protection enabled</li><li>Parameterized database queries</li>
+  </ul>
+  <form method="post" action="{{ url_for('logout') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <button type="submit">Log out</button>
+  </form>
+</section>
+{% endblock %}
